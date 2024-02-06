@@ -1,0 +1,13 @@
+1. Wherehous
+
+
+
+
+
+
+
+
+
+DEFECTS
+1. Don't open attache images
+2. supplier item link dont work hyperlink

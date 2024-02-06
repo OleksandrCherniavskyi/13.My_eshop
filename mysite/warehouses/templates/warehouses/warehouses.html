@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Werehouses{% endblock %}
+
+{% block content %}
+<h1>Available Items in Warehouses</h1>
+
+    {% if available_items %}
+        <ul>
+            {% for item in available_items %}
+                <li>{{ item.name }} - Quantity: {{ item.quantity }}</li>
+                <!-- Add other fields you want to display -->
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No items available in warehouses.</p>
+    {% endif %}
+{% endblock %}
