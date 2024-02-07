@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Artykuly dostawców{% endblock %}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="py-4 px-8 bg-teal-500 text-white rounded-xl">Dodać artykół dostawcy</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Lista dostawców{% endblock %}
+
+{% block content %}
+
+{% if not suppliers %}
+    <p>Brak dostawców.</p>
+    <a href="{% url 'add_supplier' %}" class="py-4 px-6 bg-teal-300 rounded-xl text-white">Dodaj dostawce</a>
+{% else %}
+    <ul>
+        {% for supplier in suppliers %}
+        <a href="{% url 'add_supplier' %}" class="py-4 px-6 bg-teal-300 rounded-xl text-white">Dodaj dostawce</a>
+
+            <li>
+                <strong>{{ supplier.short_name }}</strong>
+                <a>Pełna nazwa: {{ supplier.name }}</a>
+                <a>Pełna adressa: {{ supplier.street }}, {{ supplier.city }} {{ supplier.zip_code }}</a>
+                <a>NIP: {{ supplier.nip }} </a>
+                <a>REGON: {{ supplier.regon }}</a>
+                <a>Webpage: {{ supplier.site}}</a>
+                <a>Kontakt: {{ supplier.contact}}</a>
+                <a>Email: {{ supplier.email}}</a>
+                <a>Comment: {{ supplier.comment}}</a>
+
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}

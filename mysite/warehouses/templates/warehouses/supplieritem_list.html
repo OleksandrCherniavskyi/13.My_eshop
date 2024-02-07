@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Artykuły dostawców{% endblock %}
+
+{% block content %}
+
+{% if not supplieritems %}
+    <p>Brak artykulów u danego dostawcy.</p>
+    <a href="{% url 'add_supplieritem' %}" class="py-4 px-6 bg-teal-300 rounded-xl text-white">Dodaj artykul</a>
+{% else %}
+    <ul>
+        {% for item in supplieritems %}
+        <a href="{% url 'add_supplieritem' %}" class="py-4 px-6 bg-teal-300 rounded-xl text-white">Dodaj artykul</a>
+
+            <li>
+                <strong>{{ item.supplier }}</strong>
+                <p>Category: {{ item.item }}</p>
+                <p>Link: {{ item.link }}</p>
+
+
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}

@@ -2,11 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 import os
 from django.conf import settings
+from django.utils import timezone
 
 
 
 class Category(models.Model):
     category_name = models.CharField(max_length=100)
+    created_at = models.DateTimeField(default=timezone.now)
+    modified_at = models.DateTimeField(default=timezone.now)
+    created_by = models.ForeignKey(User, related_name='categories', on_delete=models.CASCADE, default=None)
 
     def __str__(self):
         return self.category_name
@@ -22,6 +26,9 @@ class Item(models.Model):
     weight = models.FloatField(null=True, blank=True, default=0)
     comment = models.CharField(max_length=200, blank=True)
     image = models.ImageField(null=True, blank=True, upload_to="static/warehouses/items/")
+    created_at = models.DateTimeField(default=timezone.now)
+    modified_at = models.DateTimeField(default=timezone.now)
+    created_by = models.ForeignKey(User, related_name='items', on_delete=models.CASCADE, default=None)
 
     def __str__(self):
         return f'{self.category} - {self.name} '
@@ -36,21 +43,28 @@ class Supplier(models.Model):
     street = models.CharField(max_length=100, blank=True)
     zip_code = models.CharField(max_length=10, blank=True)
     city = models.CharField(max_length=80, blank=True)
-    nip = int
-    regon = int
+    nip = models.IntegerField(null=True, blank=True)
+    regon = models.IntegerField(null=True, blank=True)
     site = models.CharField(max_length=200, blank=True)
     contact = models.CharField(max_length=200, blank=True)
     short_name = models.CharField(max_length=40, blank=True)
-    email = models.CharField(max_length=200, blank=True)
+    email = models.EmailField(max_length=200, blank=True)
     comment = models.CharField(max_length=200, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(User, related_name='suppliers', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.short_name
+
 
 class SupplierItem(models.Model):
     supplier = models.ForeignKey('Supplier', on_delete=models.CASCADE)
     item = models.ForeignKey('Item', on_delete=models.CASCADE)
     link = models.CharField(max_length=200, blank=True)
+    created_at = models.DateTimeField(default=timezone.now)
+    modified_at = models.DateTimeField(default=timezone.now)
+    created_by = models.ForeignKey(User, related_name='supplieritem', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return f"{self.item} - {self.supplier} - {self.link}"

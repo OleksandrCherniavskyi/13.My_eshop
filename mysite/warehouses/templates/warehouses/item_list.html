@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Lista artykulów{% endblock %}
+
+{% block content %}
+
+{% if not avalible_item %}
+    <p>No items available in the warehouse.</p>
+    <a href="{% url 'add_item' %}" class="py-4 px-6 bg-teal-300 rounded-xl text-white">Dodaj nowy artykl</a>
+{% else %}
+    <ul>
+        {% for item in avalible_item %}
+        <a href="{% url 'add_item' %}" class="py-4 px-6 bg-teal-300 rounded-xl text-white">Dodaj nowy artykl</a>
+        <a href="{% url 'add_category' %}" class="py-4 px-6 bg-teal-300 rounded-xl text-white">Doddaj nową kategorje</a>
+            <li>
+                <strong>{{ item.name }}</strong>
+                <p>Category: {{ item.category }}</p>
+                <p>Producer: {{ item.producer }}</p>
+                <p>Size: {{ item.size_x }} x {{ item.size_y }} x {{ item.size_z }}</p>
+                <p>Weight: {{ item.weight }}</p>
+                <p>Comment: {{ item.comment }}</p>
+
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}
+

@@ -3,16 +3,9 @@
 {% block title %}Werehouses{% endblock %}
 
 {% block content %}
-<h1>Available Items in Warehouses</h1>
 
-    {% if available_items %}
-        <ul>
-            {% for item in available_items %}
-                <li>{{ item.name }} - Quantity: {{ item.quantity }}</li>
-                <!-- Add other fields you want to display -->
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No items available in warehouses.</p>
-    {% endif %}
+<a href="{% url 'item_list' %}" class="py-4 px-6 bg-teal-600 rounded-xl text-white">Lista artykulów</a>
+<a href="{% url 'supplier_list' %}" class="py-4 px-6 bg-teal-600 rounded-xl text-white">Lista dostawców</a>
+<a href="{% url 'supplieritem_list' %}" class="py-4 px-6 bg-teal-600 rounded-xl text-white">Artykuły dostawców</a>
+
 {% endblock %}

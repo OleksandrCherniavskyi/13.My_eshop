@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Add category{% endblock %}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="py-4 px-8 bg-teal-500 text-white rounded-xl">Add category</button>
+</form>
+
+<div class="category-list-container">
+    {% for category in avalible_category %}
+        <p>Category: {{ category.category_name }}</p>
+    {% endfor %}
+</div>
+
+{% endblock %}
+<style>
+    .category-list-container {
+        max-height: 200px;  /* Adjust the height as needed */
+        overflow-y: auto;
+        border: 1px solid #ccc;  /* Optional: Add a border for visual separation */
+        padding: 10px;
+        margin-top: 10px;  /* Optional: Add margin for spacing */
+    }
+</style>
