@@ -3,7 +3,7 @@
 {% block title %}Add item{% endblock %}
 
 {% block content %}
-
+<a href="{% url 'add_category' %}" class="py-4 px-6 bg-teal-600 rounded-xl text-white">Nowa kategorja</a>
 <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Item, Category, Supplier, SupplierItem
+from .models import Item, Category
 
 class AddItemForm(forms.ModelForm):
     class Meta:
@@ -13,14 +13,14 @@ class AddCategoryForm(forms.ModelForm):
         model = Category
         fields = ('category_name',)
 
-class AddSupplierForm(forms.ModelForm):
-    class Meta:
-        model = Supplier
-        fields = ('name', 'street', 'zip_code', 'city', 'nip',
-                  'regon', 'site', 'contact', 'short_name', 'email',
-                  'comment', )
-
-class AddSupplierItemForm(forms.ModelForm):
-    class Meta:
-        model = SupplierItem
-        fields = ('supplier', 'item', 'link',)
+#class AddSupplierForm(forms.ModelForm):
+#    class Meta:
+#        model = Supplier
+#        fields = ('name', 'street', 'zip_code', 'city', 'nip',
+#                  'regon', 'site', 'contact', 'short_name', 'email',
+#                  'comment', )
+#
+#class AddSupplierItemForm(forms.ModelForm):
+#    class Meta:
+#        model = SupplierItem
+#        fields = ('supplier', 'item', 'link',)

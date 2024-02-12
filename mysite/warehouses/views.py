@@ -1,16 +1,16 @@
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Warehouse, Item, Category, Supplier, SupplierItem
-from .forms import AddItemForm, AddCategoryForm, AddSupplierForm, AddSupplierItemForm
+from .models import Warehouse, Item, Category
+from .forms import AddItemForm, AddCategoryForm
 
 
 @login_required
 def warehouses(request):
-    avalible_item = Warehouse.objects.all()
+    availability = Warehouse.objects.all()
 
     context = {
-        'avalible_item': avalible_item,
+        'availability': availability
     }
 
     return render(request, 'warehouses/warehouses.html', context)
@@ -47,7 +47,7 @@ def add_category(request):
             form.instance.created_by = request.user
             form.save()
 
-            return redirect('item_list')  # Redirect to the item list or any other view
+            return redirect('add_category')  # Redirect to the item list or any other view
     else:
         form = AddCategoryForm()
 
@@ -58,48 +58,4 @@ def add_category(request):
     }
 
     return render(request, 'warehouses/add_category.html', context)
-
-@login_required
-def add_supplier(request):
-    if request.method == 'POST':
-        form = AddSupplierForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.instance.created_by = request.user
-            form.save()
-
-            return redirect('supplier_list')  # Redirect to the item list or any other view
-    else:
-        form = AddSupplierForm()
-    return render(request, 'warehouses/add_supplier.html', {'form': form})
-
-@login_required
-def supplier_list(request):
-    suppliers = Supplier.objects.all()
-    context = {
-        'suppliers': suppliers
-    }
-    return render(request, 'warehouses/supplier_list.html', context)
-
-
-@login_required
-def add_supplieritem(request):
-    if request.method == 'POST':
-        form = AddSupplierItemForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.instance.created_by = request.user
-            form.save()
-
-            return redirect('supplieritem_list')  # Redirect to the item list or any other view
-    else:
-        form = AddSupplierItemForm()
-    return render(request, 'warehouses/add_supplieritem.html', {'form': form})
-
-
-@login_required
-def supplieritem_list(request):
-    supplieritems = SupplierItem.objects.all()
-    context = {
-        'supplieritems': supplieritems
-    }
-    return render(request, 'warehouses/supplieritem_list.html', context)
 

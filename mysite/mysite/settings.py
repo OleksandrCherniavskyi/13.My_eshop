@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'core',
     'userprofile',
     'dashboard',
-    'warehouses',
+    'warehouses.apps.WarehousesConfig',
+    'purchasing.apps.PurchasingConfig',
 
 ]
 
