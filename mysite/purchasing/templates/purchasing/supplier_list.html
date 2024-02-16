@@ -6,27 +6,28 @@
 
 {% if not suppliers %}
     <p>Brak dostawców.</p>
+    <!-- Outside the loop -->
     <a href="{% url 'add_supplier' %}" class="py-4 px-6 bg-teal-300 rounded-xl text-white">Dodaj dostawce</a>
 {% else %}
     <ul>
+        <div class="flex justify-between">
+            <strong>Lista dostawców:</strong>
+            <br><br>
+        </div>
         {% for supplier in suppliers %}
-        <a href="{% url 'add_supplier' %}" class="py-4 px-6 bg-teal-300 rounded-xl text-white">Dodaj dostawce</a>
+            <div class="flex justify-between">
+                <a href="{% url 'supplier_detail' supplier.id %}">
+                    <strong>{{ supplier.short_name }}</strong>
+                </a>
 
-            <li>
-                <strong>{{ supplier.short_name }}</strong>
-                <a>Pełna nazwa: {{ supplier.name }}</a>
-                <a>Pełna adressa: {{ supplier.street }}, {{ supplier.city }} {{ supplier.zip_code }}</a>
-                <a>NIP: {{ supplier.nip }} </a>
-                <a>REGON: {{ supplier.regon }}</a>
-                <a>Webpage: {{ supplier.site}}</a>
-                <a>Kontakt: {{ supplier.contact}}</a>
-                <a>Email: {{ supplier.email}}</a>
-                <a>Comment: {{ supplier.comment}}</a>
-
-            </li>
+                <!-- Add link to supplieritem_list -->
+                <a href="{% url 'supplieritem_list' pk=supplier.id %}">
+                    Supplier Items
+                </a>
+            </div>
             <hr>
         {% endfor %}
     </ul>
 {% endif %}
-
+<a href="{% url 'add_supplier' %}" class="py-4 px-6 bg-teal-300 rounded-xl text-white">Dodaj dostawce</a>
 {% endblock %}

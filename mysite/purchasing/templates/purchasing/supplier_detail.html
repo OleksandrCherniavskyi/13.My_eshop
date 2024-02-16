@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Supplier Detail: {{ supplier.short_name }}{% endblock %}
+
+{% block content %}
+    <h2>{{ supplier.short_name }}</h2>
+    <p>Full Name: {{ supplier.name }}</p>
+    <p>Kod pocztowy: {{ supplier.zip_code }}</p>
+    <p>Misto: {{ supplier.city }}</p>
+    <p>NIP: {{ supplier.nip }}</p>
+    <p>REGON: {{ supplier.regon }}</p>
+    <p>Webpage: {{ supplier.site }}</p>
+    <p>Kontakt: {{ supplier.contact }}</p>
+    <p>Email: {{ supplier.email }}</p>
+    <p>Komentarz: {{ supplier.comment }}</p>
+    <!-- Add other details as needed -->
+
+    <!-- You can include additional information and styling based on your requirements -->
+<a href="{% url 'supplier_list' %}" class="py-4 px-6 bg-teal-300 rounded-xl text-white">Lista dostawców</a>
+{% endblock %}

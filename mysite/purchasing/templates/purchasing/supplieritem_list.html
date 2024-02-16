@@ -1,27 +1,28 @@
+<!-- In your_app/templates/your_app/supplieritem_list.html -->
 {% extends 'core/base.html' %}
 
-{% block title %}Artykuły dostawców{% endblock %}
+{% block title %}Supplier Item List{% endblock %}
 
 {% block content %}
 
-{% if not supplieritems %}
-    <p>Brak artykulów u danego dostawcy.</p>
-    <a href="{% url 'add_supplieritem' %}" class="py-4 px-6 bg-teal-300 rounded-xl text-white">Dodaj artykul</a>
+{% if not supplier_items %}
+    <p>No items available for this supplier.</p>
 {% else %}
     <ul>
-        {% for item in supplieritems %}
-        <a href="{% url 'add_supplieritem' %}" class="py-4 px-6 bg-teal-300 rounded-xl text-white">Dodaj artykul</a>
-
-            <li>
-                <strong>{{ item.supplier }}</strong>
-                <p>Category: {{ item.item }}</p>
-                <p>Link: {{ item.link }}</p>
-
-
-            </li>
+        <div class="flex justify-between">
+            <strong>Supplier Item List:</strong>
+            <br><br>
+        </div>
+        {% for supplier_item in supplier_items %}
+            <div class="flex justify-between">
+                <!-- Display SupplierItem details -->
+                <!-- Adjust this based on your SupplierItem model fields -->
+                <p>{{ supplier_item.item.name }} - {{ supplier_item.link }}</p>
+            </div>
             <hr>
         {% endfor %}
     </ul>
 {% endif %}
 
+<a href="{% url 'supplier_list' %}" class="py-4 px-6 bg-teal-300 rounded-xl text-white">Back to Supplier List</a>
 {% endblock %}
