@@ -13,7 +13,7 @@ def warehouses(request):
         'availability': availability
     }
 
-    return render(request, 'warehouses/warehouses.html', context)
+    return render(request, 'warehouses/warehouse.html', context)
 
 
 @login_required
@@ -58,4 +58,11 @@ def add_category(request):
     }
 
     return render(request, 'warehouses/add_category.html', context)
+
+def item_detail(request, pk):
+    item = Item.objects.get(pk=pk)
+    context = {
+        'item': item
+    }
+    return render(request, 'warehouses/item_detail.html', context)
 

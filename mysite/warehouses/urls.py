@@ -12,13 +12,9 @@ urlpatterns = [
     path('add_item', views.add_item, name='add_item'),
     path('item_list', views.item_list, name='item_list'),
     path('add_category', views.add_category, name='add_category'),
-    #path('add_supplier', views.add_supplier, name='add_supplier'),
-    #path('supplier_list', views.supplier_list, name='supplier_list'),
-    #path('supplieritem_list', views.supplieritem_list, name='supplieritem_list'),
-    #path('add_supplieritem', views.add_supplieritem, name='add_supplieritem'),
+    path('item_detail/<int:pk>/', views.item_detail, name='item_detail'),
 
 ]
-
-if settings.DEBUG:
-    #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+#if settings.DEBUG:
+#    #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -6,7 +6,7 @@
 {% block content %}
 
 {% if not supplier_items %}
-    <p>No items available for this supplier.</p>
+        <p>No items available for this supplier.</p>
 {% else %}
     <ul>
         <div class="flex justify-between">
@@ -16,11 +16,12 @@
         {% for supplier_item in supplier_items %}
             <div class="flex justify-between">
                 <!-- Display SupplierItem details -->
-                <!-- Adjust this based on your SupplierItem model fields -->
-                <p>{{ supplier_item.item.name }} - {{ supplier_item.link }}</p>
+                <p><a href="{% url 'item_detail' pk=supplier_item.item.pk %}">{{ supplier_item.item.name }}</a></p>
+                <p><a href="{{ supplier_item.link }}">Link</a></p>
             </div>
-            <hr>
+    <hr>
         {% endfor %}
+
     </ul>
 {% endif %}
 

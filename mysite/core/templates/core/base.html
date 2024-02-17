@@ -1,33 +1,32 @@
-
-
 <!DOCTYPE html>
 {% load static %}
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="{% static 'main.min.css' %}">
+    <!-- Link to your static CSS files -->
+    <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/navbar.css' %}">
 
-        <title>{% block title %}{% endblock %}</title>
-    </head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
 
-    <body>
-        {% include 'core/navbar.html' %}
+<body>
+    {% include 'core/navbar.html' %}
 
-        {% if messages %}
-            <div class="py-6 px-6">
-                {% for message in messages %}
-                    <div class="py-4 px-4 bg-teal-300 text-white rounded-xl">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
+    {% if messages %}
+        <div>
+            {% for message in messages %}
+                <div>{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
 
-        {% block content %}
-        {% endblock %}
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
 
-        {% include 'core/footer.html' %}
-    </body>
+    {% include 'core/footer.html' %}
+</body>
 </html>

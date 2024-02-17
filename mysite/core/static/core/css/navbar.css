@@ -1,0 +1,19 @@
+/* navbar.css */
+
+.navbar-container {
+    background-color: #E0E0E0;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-side a, .right-side button, .right-side a {
+    color: white;
+    text-decoration: none;
+    margin-left: 10px; /* Adjust the spacing between links */
+}
+
+/* Optional: Add hover effect */
+.left-side a:hover, .right-side button:hover, .right-side a:hover {
+    text-decoration: underline;
+}

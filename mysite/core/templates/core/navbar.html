@@ -1,29 +1,34 @@
+{% load static %}
 
-<div class="space-x-4">
-    <!-- Common links -->
-    <a href="{% url 'about' %}" class="text-white">About</a>
+<link rel="stylesheet" href="{% static 'core/css/navbar.css' %}">
 
-    {% if request.user.is_authenticated %}
-        <!-- Authenticated user links -->
-        <a href="#" class="text-white">{{ active_team.name }}</a>
-        <a href="{% url 'dashboard' %}" class="py-4 px-6 bg-teal-600 rounded-xl text-white">Dashboard</a>
-        <a href="{% url 'supplier_list' %}" class="py-4 px-6 bg-teal-600 rounded-xl text-white">Purchasing</a>
-        <a href="#" class="py-4 px-6 bg-teal-600 rounded-xl text-white">Clients</a>
-        <a href="#" class="py-4 px-6 bg-teal-800 rounded-xl text-white">My account</a>
+<div class="navbar-container">
 
-        <!-- Logout form -->
-        <form action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Log Out</button>
-        </form>
+    <!-- Left side links -->
+    <div class="left-side">
+        <a href="{% url 'dashboard' %}" class="text-white">Dashboard</a>
+        <a href="{% url 'supplier_list' %}" class="text-white">Purchasing</a>
+        <a href="#" class="text-white">Clients</a>
+        <a href="#" class="text-white">My account</a>
+        <a href="{% url 'about' %}" class="text-white">About</a>
 
         <!-- Superuser link -->
         {% if request.user.is_superuser %}
-            <a href="{% url 'warehouses' %}" class="py-4 px-6 bg-teal-600 rounded-xl text-white">Warehouses</a>
+            <a href="{% url 'warehouses' %}" class="text-white">Warehouses</a>
         {% endif %}
-    {% else %}
-        <!-- Unauthenticated user links -->
-        <a href="{% url 'login' %}" class="py-4 px-6 bg-teal-600 rounded-xl text-white">Log in</a>
-        <a href="{% url 'signup' %}" class="py-4 px-6 bg-teal-300 rounded-xl text-white">Sign up</a>
-    {% endif %}
+    </div>
+
+    <!-- Right side links -->
+    <div class="right-side">
+        {% if request.user.is_authenticated %}
+            <form action="{% url 'logout' %}" method="post" style="display: inline-block;">
+                {% csrf_token %}
+                <button type="submit" class="text-white">Log Out</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}" class="text-white">Log in</a>
+            <a href="{% url 'signup' %}" class="text-white">Sign up</a>
+        {% endif %}
+    </div>
+
 </div>

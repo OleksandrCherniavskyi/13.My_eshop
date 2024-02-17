@@ -1,0 +1,16 @@
+<!-- In your warehouse app's templates/warehouse/item_detail.html -->
+{% extends 'core/base.html' %}
+
+{% block title %}Item Detail: {{ item.name }}{% endblock %}
+
+{% block content %}
+    <h2>{{ item.name }}</h2>
+    <p>Category: {{ item.category }}</p>
+    <p>Producer: {{ item.producer }}</p>
+    <p>Produce Code: {{ item.produce_code }}</p>
+    <!-- Add other details based on your Item model fields -->
+    <h1>Wszystkie dostawcy</h1>
+    <h1>Ceny w tych dostawców</h1>
+    <h1></h1>
+    <!-- You can include additional information and styling based on your requirements -->
+{% endblock %}
