@@ -7,13 +7,33 @@
     justify-content: space-between;
 }
 
-.left-side a, .right-side button, .right-side a {
-    color: white;
+.right-side button {
     text-decoration: none;
-    margin-left: 10px; /* Adjust the spacing between links */
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    height: 100%; /* Make buttons fill the entire navbar height */
+    color: white;
+    font-weight: bold;
+    outline: none;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Add transition for color */
 }
 
-/* Optional: Add hover effect */
-.left-side a:hover, .right-side button:hover, .right-side a:hover {
-    text-decoration: underline;
+/* Positive button style */
+.login-btn, .signup-btn {
+    background-color: #A0A0A0;
+    color: black; /* Adjust the color */
+}
+
+/* Negative button style */
+.logout-btn {
+    background-color: red;
+}
+
+/* Add hover effect */
+.right-side button:hover {
+    background-color: #2ecc71; /* Change to a lighter shade of green for positive button */
+    color: white; /* Reset the color on hover */
 }

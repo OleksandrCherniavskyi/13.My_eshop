@@ -13,14 +13,3 @@ class AddCategoryForm(forms.ModelForm):
         model = Category
         fields = ('category_name',)
 
-#class AddSupplierForm(forms.ModelForm):
-#    class Meta:
-#        model = Supplier
-#        fields = ('name', 'street', 'zip_code', 'city', 'nip',
-#                  'regon', 'site', 'contact', 'short_name', 'email',
-#                  'comment', )
-#
-#class AddSupplierItemForm(forms.ModelForm):
-#    class Meta:
-#        model = SupplierItem
-#        fields = ('supplier', 'item', 'link',)

@@ -3,33 +3,44 @@
 {% block title %}Warehouse{% endblock %}
 
 {% block content %}
-
-<a href="{% url 'item_list' %}" class="py-4 px-6 bg-teal-600 rounded-xl text-white">Lista artykulów</a>
-<a href="{% url 'supplier_list' %}" class="py-4 px-6 bg-teal-600 rounded-xl text-white">Lista dostawców</a>
-
-{% if not availability %}
-    <p>No items available in the warehouse.</p>
-{% else %}
-    <table>
-        <thead>
-            <tr>
-                <th>Item</th>
-                <th>Quantity</th>
-                <th>Min Quantity</th>
-                <th>Localization</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in availability %}
-                <tr>
-                    <td><strong>{{ item.item }}</strong></td>
-                    <td>{{ item.qty }}</td>
-                    <td>{{ item.min_qty }}</td>
-                    <td>{{ item.localization }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% endif %}
+<link rel="stylesheet" href="{% static 'core/css/navbar.css' %}">
+<div class="container">
+    <div class="row">
+        <div class="col-md-1">
+            <!-- Left Sidebar -->
+            <div class="left-sidebar">
+                <a href="{% url 'item_list' %}" class="py-2 px-4 bg-teal-500 text-white">Lista artykulów</a>
+                <a href="{% url 'supplier_list' %}" class="py-2 px-4 bg-teal-500 text-white">Lista dostawców</a>
+            </div>
+        </div>
+        <div class="col-md-11">
+            <!-- Main Content -->
+            {% if not availability %}
+                <p>No items available in the warehouse.</p>
+            {% else %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Min Quantity</th>
+                            <th>Localization</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in availability %}
+                            <tr>
+                                <td><strong>{{ item.item }}</strong></td>
+                                <td>{{ item.qty }}</td>
+                                <td>{{ item.min_qty }}</td>
+                                <td>{{ item.localization }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+    </div>
+</div>
 
 {% endblock %}

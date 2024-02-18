@@ -7,7 +7,6 @@
     <!-- Left side links -->
     <div class="left-side">
         <a href="{% url 'dashboard' %}" class="text-white">Dashboard</a>
-        <a href="{% url 'supplier_list' %}" class="text-white">Purchasing</a>
         <a href="#" class="text-white">Clients</a>
         <a href="#" class="text-white">My account</a>
         <a href="{% url 'about' %}" class="text-white">About</a>
@@ -15,19 +14,23 @@
         <!-- Superuser link -->
         {% if request.user.is_superuser %}
             <a href="{% url 'warehouses' %}" class="text-white">Warehouses</a>
+            <a href="{% url 'supplier_list' %}" class="text-white">Purchasing</a>
         {% endif %}
     </div>
 
-    <!-- Right side links -->
     <div class="right-side">
         {% if request.user.is_authenticated %}
-            <form action="{% url 'logout' %}" method="post" style="display: inline-block;">
+            <form action="{% url 'logout' %}" method="post"  class="logout-btn">
                 {% csrf_token %}
-                <button type="submit" class="text-white">Log Out</button>
+                <button type="submit">Log Out</button>
             </form>
         {% else %}
-            <a href="{% url 'login' %}" class="text-white">Log in</a>
-            <a href="{% url 'signup' %}" class="text-white">Sign up</a>
+            <a style="display: inline-block;" class="login-btn" href="{% url 'login' %}">
+                <button >Log in</button>
+            </a>
+            <a style="display: inline-block;" class="signup-btn" href="{% url 'signup' %}">
+                <button >Sign up</button>
+            </a>
         {% endif %}
     </div>
 
