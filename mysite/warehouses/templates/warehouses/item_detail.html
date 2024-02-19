@@ -1,9 +1,9 @@
 <!-- In your warehouse app's templates/warehouse/item_detail.html -->
-{% extends 'core/base.html' %}
+{% extends 'core/crm.html' %}
 
 {% block title %}Item Detail: {{ item.name }}{% endblock %}
 
-{% block content %}
+{% block main_content %}
     <h2>{{ item.name }}</h2>
     <p>Category: {{ item.category }}</p>
     <p>Producer: {{ item.producer }}</p>

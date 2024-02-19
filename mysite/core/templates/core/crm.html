@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}CRM{% endblock %}
+
+{% block content %}
+{% if request.user.is_superuser %}
+    <link rel="stylesheet" href="{% static 'core/css/crm.css' %}">
+    <div class="columns-container">
+        <div class="left-sidebar">
+            <p class="link-text"><a href="{% url 'item_list' %}">Lista artykulów</a></p>
+            <p class="link-text"><a href="{% url 'supplier_list' %}" >Lista dostawców</a></p>
+            <p class="link-text"><a href="{% url 'warehouses' %}" >Warehouses</a></p>
+            <p class="link-text"><a href="{% url 'supplier_list' %}" >Purchasing</a></p>
+
+        </div>
+
+        <div class="right-sidebar">
+            {% block main_content %}{% endblock %}
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

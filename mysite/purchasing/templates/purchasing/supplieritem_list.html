@@ -1,9 +1,9 @@
 <!-- In your_app/templates/your_app/supplieritem_list.html -->
-{% extends 'core/base.html' %}
+{% extends 'core/crm.html' %}
 
 {% block title %}Supplier Item List{% endblock %}
 
-{% block content %}
+{% block main_content %}
 
 {% if not supplier_items %}
         <p>No items available for this supplier.</p>

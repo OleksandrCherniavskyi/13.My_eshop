@@ -1,30 +1,77 @@
-{% extends 'core/base.html' %}
+{% extends 'core/crm.html' %}
 
 {% block title %}Lista artykulów{% endblock %}
 
-{% block content %}
+{% block main_content %}
+    <style>
+        /* Custom Styles */
+        .even-row {
+            background-color: #f8f8f8;
+        }
 
-{% if not avalible_item %}
-    <p>No items available in the warehouse.</p>
-    <a href="{% url 'add_item' %}" class="py-4 px-6 bg-teal-300 rounded-xl text-white">Dodaj nowy artykl</a>
-{% else %}
-    <ul>
-        {% for item in avalible_item %}
-        <a href="{% url 'add_item' %}" class="py-4 px-6 bg-teal-300 rounded-xl text-white">Dodaj nowy artykl</a>
-        <a href="{% url 'add_category' %}" class="py-4 px-6 bg-teal-300 rounded-xl text-white">Doddaj nową kategorje</a>
-            <li>
-                <strong>{{ item.name }}</strong>
-                <p>Category: {{ item.category }}</p>
-                <p>Producer: {{ item.producer }}</p>
-                <p>Size: {{ item.size_x }} x {{ item.size_y }} x {{ item.size_z }}</p>
-                <p>Weight: {{ item.weight }}</p>
-                <p>Comment: {{ item.comment }}</p>
+        .odd-row {
+            background-color: #ffffff;
+        }
 
-            </li>
-            <hr>
-        {% endfor %}
-    </ul>
-{% endif %}
+        .search-bar {
+            margin-bottom: 15px;
+        }
+    </style>
 
+    {% if not avalible_item %}
+        <p>No items available in the warehouse.</p>
+        <a href="{% url 'add_item' %}">Dodaj nowy artykl</a>
+    {% else %}
+        <a href="{% url 'add_item' %}">Dodaj nowy artykl</a>
+        <a href="{% url 'add_category' %}">Dodaj nową kategorię</a>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <form method="get">
+                <input type="text" name="search" placeholder="Search by Name, Category, Producer">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <!-- Item Table -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Producer</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in avalible_item %}
+                    <tr class="{% cycle 'even-row' 'odd-row' %}">
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td><strong>{{ item.name }}</strong><br>{{ item.comment }}</td>
+                        <td>{{ item.category }}</td>
+                        <td>{{ item.producer }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Pagination Links -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if avalible_item.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ avalible_item.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ avalible_item.number }} of {{ avalible_item.paginator.num_pages }}.
+                </span>
+
+                {% if avalible_item.has_next %}
+                    <a href="?page={{ avalible_item.next_page_number }}">next</a>
+                    <a href="?page={{ avalible_item.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
 {% endblock %}
-

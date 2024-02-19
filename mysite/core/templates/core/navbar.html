@@ -7,14 +7,12 @@
     <!-- Left side links -->
     <div class="left-side">
         <a href="{% url 'dashboard' %}" class="text-white">Dashboard</a>
-        <a href="#" class="text-white">Clients</a>
-        <a href="#" class="text-white">My account</a>
+
         <a href="{% url 'about' %}" class="text-white">About</a>
 
         <!-- Superuser link -->
         {% if request.user.is_superuser %}
-            <a href="{% url 'warehouses' %}" class="text-white">Warehouses</a>
-            <a href="{% url 'supplier_list' %}" class="text-white">Purchasing</a>
+            <a href="{% url 'crm' %}" class="text-white">CRM</a>
         {% endif %}
     </div>
 
